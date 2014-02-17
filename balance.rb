@@ -4,6 +4,7 @@ require 'json'
 require 'colorize'
 
 doge_balance = ARGV[0]
+initial_investment = ARGV[1]
 
 doge_to_usd = Curl.post("http://api.vaultofsatoshi.com/public/ticker", {:order_currency => "DOGE", :payment_currency => "USD"})
 doge_to_usd_avg_value = doge_to_usd.body_str.split("average_price")[1].split("value\":\"")[1].split("\"")[0]
@@ -16,12 +17,12 @@ doge_to_usd_close_value = doge_to_usd.body_str.split("closing_price")[1].split("
 #doge_in_btc = btc_to_doge_value.to_f * doge_balance.to_f
 
 doge_to_usd_balance = doge_to_usd_avg_value.to_f * doge_balance.to_f
-total_earned = doge_to_usd_balance - 95
+total_earned = doge_to_usd_balance - initial_investment.to_f
 
 puts Time.new
 #puts "BTC: #{btc_to_doge_value}/1 DOGE".yellow
 puts "USD Avg: #{doge_to_usd_avg_value} = 1 DOGE".yellow
-puts "USD Avg: #{doge_to_usd_close_value} = 1 DOGE".yellow
+puts "USD Close: #{doge_to_usd_close_value} = 1 DOGE".yellow
 puts "Total: $#{doge_to_usd_balance.round(2)}".green
 puts "+$#{total_earned}".green
 
