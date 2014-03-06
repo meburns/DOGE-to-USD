@@ -25,7 +25,7 @@ puts "USD Avg: #{doge_to_usd_avg_value} = 1 DOGE".yellow
 puts "USD Close: #{doge_to_usd_close_value} = 1 DOGE".yellow
 puts "Total: $#{doge_to_usd_balance.round(2)}".green
 
-if(total_earned > 0)
+if(total_earned >= 0)
   puts "+$#{total_earned}".green
 else
   total_earned
